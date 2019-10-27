@@ -1,0 +1,18 @@
+{% set defaultClassesBody = "font-mono m-0 text-gs5 flex flex-col h-screen" %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Nolan Wright">
+		<meta name="description" content="{{ description }}">
+		<title>{{ title }}</title>
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	{% block body %}
+		<body class="{{ defaultClassesBody }}">
+			{% block innerBody %}{% endblock %}
+		</body>
+	{% endblock %}
+</html>

@@ -1,0 +1,1 @@
+{% macro anchor(inner, href, rel='', type='', title='', target='') %}<a class="text-black underline" href="{{ href }}" {% if rel %}rel="{{ rel }}"{% endif %} {% if type %}type="{{ type }}"{% endif %} {% if title %}title="{{ title }}"{% endif %} {% if target %}target="{{ target }}"{% endif %}>{{ inner }}</a>{% endmacro %}

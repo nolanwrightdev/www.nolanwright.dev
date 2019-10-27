@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+const fs                           = require('fs')
+const { DOMParser, XMLSerializer } = require('xmldom')
+
+const error = (message, code) => {
+	console.error(message)
+	process.exit(code || 1)
+}
+
+const [,, file, ...ids] = process.argv
+
+if (!file || ids.length < 1) error('Usage: purgesvgdefs <file> <id>...')
+
+const positiveIds = new Set(ids)
+
+try {
+	const doc = new DOMParser().parseFromString(fs.readFileSync(file, 'utf8'))
+	const defs = doc.documentElement.childNodes['0']
+	Object.values(defs.childNodes)
+		.filter(child => child.nodeName === 'symbol')
+		.filter(child => !positiveIds.has(child.getAttribute('id')))
+		.forEach(child => defs.removeChild(child))
+	process.stdout.write(`${new XMLSerializer().serializeToString(doc)}\n`)
+} catch (e) {
+	error(e.message)
+}
