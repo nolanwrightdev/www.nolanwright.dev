@@ -1,12 +1,11 @@
 srcdir := website
 outdir := dist
-templates := $(shell find $(srcdir) -type f -not -name '_*' -name '*.njk')
-macros := $(wildcard $(srcdir)/macros/_*.njk)
-layouts := $(wildcard $(srcdir)/layouts/_*.njk)
-partials := $(macros) $(layouts)
-# Handling views is TBD.
-# views := $(templates:%.njk=%.json)
-markup := $(templates:$(srcdir)/%.njk=$(outdir)/%.html)
+lisp := $(shell find $(srcdir) -type f -name '*.lisp')
+lisp_deps := www.nolanwright.dev.asd \
+             packages.lisp \
+             $(shell find shh-html -type f) \
+             $(shell find shh-utils -type f)
+markup := $(lisp:$(srcdir)/%.lisp=$(outdir)/%.html)
 style := $(outdir)/style.css
 # We also may need .png assets in addition to the favicon.ico.
 assets := $(outdir)/favicon.ico $(outdir)/icons.svg
@@ -31,13 +30,19 @@ $(outdir)/tailwind.css: $(srcdir)/style.css tailwind.config.js
 $(outdir)/%.html: $(outdir)/%.unmin.html
 	npx html-minifier -c html-minifier.config.json -o $@ $<
 
-$(outdir)/%.unmin.html: $(srcdir)/%.njk $(partials)
+$(outdir)/%.unmin.html: $(srcdir)/%.lisp $(lisp_deps)
 	mkdir -p $(@D)
-# scripts/nunjucks $< $(find -f -name "$(srcdir)/$*.json") > $@
-	scripts/nunjucks $< > $@
-
-# $(views):
-# 	$(error Missing view file at $@)
+	sbcl --noinform \
+	     --eval "(require 'asdf)" \
+	     --eval "(import 'asdf:defsystem)" \
+       --eval "(setf *load-verbose* nil)" \
+       --eval "(setf *load-print* nil)" \
+       --eval "(setf *compile-verbose* nil)" \
+       --eval "(setf *compile-print* nil)" \
+       --load www.nolanwright.dev.asd \
+       --eval '(asdf:load-system "www.nolanwright.dev")' \
+       --eval "(use-package 'shh-utils)" \
+       --script $< > $@
 
 $(outdir)/favicon.ico:
 	mkdir -p $(@D)
