@@ -1,1 +1,1 @@
-* www.nolanwright.dev
+* [[https://www.nolanwright.dev][My personal blog and website]]

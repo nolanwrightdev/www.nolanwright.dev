@@ -1,0 +1,68 @@
+@import 'reset-css/reset', 'styles/index';
+
+body {
+	font-family: sans-serif;
+	background: $light;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+::selection {
+	background-color: black;
+	color: white;
+}
+
+a, a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+.feather {
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+
+.homenav {
+	border: {
+		bottom: solid {
+			width: 1px;
+		}
+		color: $dark;
+	}
+	transition: all 250ms ease;
+	&:hover {
+		border-color: $light;
+	}
+}
+
+.sectionsnav:hover {
+	background-color: #ededed;
+}
+
+.sectionsbb {
+	border-bottom: solid 1px #9a9a9a;
+}
+
+.sectionsbt {
+	border-top: solid 1px #9a9a9a;
+}
+
+.homeanchor {
+	margin: 0.75rem;
+	border-radius: 9999px;
+	transition: all 250ms ease;
+	&:hover {
+		background-color: $dark;
+		color: $light;
+	}
+}
+
+.sectionsanchor {
+	border-radius: 100%;
+	&:hover {
+		background-color: #ededed;
+	}
+}

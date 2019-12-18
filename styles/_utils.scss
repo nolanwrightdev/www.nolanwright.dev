@@ -1,0 +1,161 @@
+.tdu {
+	text-decoration: underline;
+}
+
+.para {
+	max-width: 70ch;
+}
+
+@for $i from 8 through 24 {
+	.ls#{$i} {
+		letter-spacing: $i * 0.0125em - 0.2em;
+	}
+}
+
+@for $i from 16 through 32 {
+	.lh#{$i} {
+		line-height: $i * 0.0625;
+	}
+}
+
+.ffss {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.ffs {
+	font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.ffm {
+	font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@for $i from 1 through 32 {
+	.fs#{$i} {
+		font-size: $i * 0.0625rem;
+	}
+}
+
+@for $i from 1 through 32 {
+	.w#{$i} {
+		width: $i * 0.0625rem;
+	}
+}
+
+.wmax {
+	width: 100%;
+}
+
+@for $i from 1 through 32 {
+	.h#{$i} {
+		height: $i * 0.0625rem;
+	}
+}
+
+.hmax {
+	height: 100%;
+}
+
+@for $i from 1 through 32 {
+	.m#{$i} {
+		margin: $i * 0.0625rem;
+	}
+
+	.mb#{$i} {
+		margin-bottom: $i * 0.0625rem;
+	}
+}
+
+@for $i from 1 through 32 {
+	.mx#{$i} {
+		margin: 0 $i * 0.0625rem;
+	}
+}
+
+.mxa {
+	margin: 0 auto;
+}
+
+@for $i from 1 through 32 {
+	.my#{$i} {
+		margin: $i * 0.0625rem 0;
+	}
+}
+
+.mya {
+	margin: auto 0;
+}
+
+.ma {
+	margin: auto;
+}
+
+@for $i from 1 through 32 {
+	.p#{$i} {
+		padding: $i * 0.0625rem;
+	}
+}
+
+@for $i from 1 through 32 {
+	.px#{$i * 4} {
+		padding: 0 $i * 0.25rem;
+	}
+}
+
+@for $i from 1 through 32 {
+	.py#{$i} {
+		padding: $i * 0.0625rem 0;
+	}
+}
+
+.db {
+	display: block;
+}
+
+.df {
+	display: flex;
+}
+
+.f1 {
+	flex: 1 1 0%;
+}
+
+.fa {
+	flex: 1 1 auto;
+}
+
+.fi {
+	flex: 0 1 auto;
+}
+
+.fn {
+	flex: none
+}
+
+.fdr {
+	flex-direction: row;
+}
+
+.fdrr {
+	flex-direction: row-reverse;
+}
+
+.fdc {
+	flex-direction: column;
+}
+
+.fdcr {
+	flex-direction: column-reverse;
+}
+
+.tac {
+	text-align: center;
+}
+
+.aic {
+	align-items: center;
+}
+
+.jcc {
+	justify-content: center;
+}

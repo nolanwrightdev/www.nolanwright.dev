@@ -1,0 +1,33 @@
+extends base
+
+block innerBody
+	header(class='fi')
+		nav(class='para ma')
+			ul(class='df jcc sectionsbb ffm')
+				-
+
+					let xs = [
+						['/', 'Home'],
+						['/about/', 'About'],
+						['/blog/', 'Blog']]
+
+				for x in xs
+					li(class='sectionsnav')
+						a(href=x[0] class='db p12')= x[1]
+	block main
+		main(class='ffss fa p24')
+			div(class='lh26 para mxa')
+				block innerMain
+	footer(class='fi')
+		div(class='df jcc sectionsbt para ma')
+			-
+				let ys = [
+					['mailto:nolan@nolanwright.dev', 'mail'],
+					['xmpp:nwdev@jabber.fr', 'message-circle'],
+					['https://www.github.com/nolanwrightdev', 'github'],
+					['https://www.gitlab.com/nolanwrightdev', 'gitlab']]
+
+			for y in ys
+				a(href=y[0] class='sectionsanchor m8')
+					svg(class='feather h16 w16 m8 db')
+						!= `<use href="/sprite.svg#${y[1]}">`
