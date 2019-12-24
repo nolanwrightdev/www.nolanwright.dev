@@ -1,0 +1,73 @@
+@use 'styles/abstracts/mixins';
+
+@include mixins.utility(ma) {
+	margin: auto;
+}
+
+@include mixins.utility(mxa) {
+	margin: 0 auto;
+}
+
+@include mixins.utility(mya) {
+	margin: auto 0;
+}
+
+@include mixins.graduated using ($i, $m) {
+
+	@include mixins.utility(m#{$i}) {
+		margin: $m;
+	}
+
+	@include mixins.utility(mb#{$i}) {
+		margin-bottom: $m;
+	}
+
+	@include mixins.utility(ml#{$i}) {
+		margin-left: $m;
+	}
+
+	@include mixins.utility(mr#{$i}) {
+		margin-right: $m;
+	}
+
+	@include mixins.utility(mt#{$i}) {
+		margin-top: $m;
+	}
+
+	@include mixins.utility(mx#{$i}) {
+		margin: 0 $m;
+	}
+
+	@include mixins.utility(my#{$i}) {
+		margin: $m 0;
+	}
+
+	@include mixins.utility(p#{$i}) {
+		padding: $m;
+	}
+
+	@include mixins.utility(pb#{$i}) {
+		padding-bottom: $m;
+	}
+
+	@include mixins.utility(pl#{$i}) {
+		padding-left: $m;
+	}
+
+	@include mixins.utility(pr#{$i}) {
+		padding-right: $m;
+	}
+
+	@include mixins.utility(pt#{$i}) {
+		padding-top: $m;
+	}
+
+	@include mixins.utility(px#{$i}) {
+		padding: 0 $m;
+	}
+
+	@include mixins.utility(py#{$i}) {
+		padding: $m 0;
+	}
+
+}

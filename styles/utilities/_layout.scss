@@ -1,0 +1,69 @@
+@use 'styles/abstracts/mixins';
+
+@include mixins.utility(db) {
+	display: block;
+}
+
+@include mixins.utility(dib) {
+	display: inline-block;
+}
+
+@include mixins.utility(df) {
+	display: flex;
+}
+
+@include mixins.utility(f110) {
+	flex: 1 1 0%;
+}
+
+@include mixins.utility(f11a) {
+	flex: 1 1 auto;
+}
+
+@include mixins.utility(f01a) {
+	flex: 0 1 auto;
+}
+
+@include mixins.utility(fww) {
+	flex-wrap: wrap;
+}
+
+@include mixins.utility(fdr) {
+	flex-direction: row;
+}
+
+@include mixins.utility(fdrr) {
+	flex-direction: row-reverse;
+}
+
+@include mixins.utility(fdc) {
+	flex-direction: column;
+}
+
+@include mixins.utility(fdcr) {
+	flex-direction: column-reverse;
+}
+
+@include mixins.utility(aib) {
+	align-items: baseline;
+}
+
+@include mixins.utility(aic) {
+	align-items: center;
+}
+
+@include mixins.utility(ailb) {
+	align-items: last baseline;
+}
+
+@include mixins.utility(jcc) {
+	justify-content: center;
+}
+
+@include mixins.utility(jcsa) {
+	justify-content: space-around;
+}
+
+@include mixins.utility(jcsb) {
+	justify-content: space-between;
+}

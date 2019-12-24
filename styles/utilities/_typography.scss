@@ -1,0 +1,41 @@
+@use 'styles/abstracts/mixins';
+
+@include mixins.graduated using ($i, $m) {
+	@include mixins.utility(fs#{$i}) {
+		font-size: $m;
+	}
+}
+
+@include mixins.graduated($start: 1, $end: 7, $step: 100) using ($i, $m) {
+	@include mixins.utility(fw#{$i}) {
+		font-weight: $m;
+	}
+}
+
+@include mixins.graduated($start: 8, $end: 24, $step: .0125rem) using ($i, $m) {
+	@include mixins.utility(ls#{$i}) {
+		letter-spacing: $m - .2rem;
+	}
+}
+
+@include mixins.graduated($start: 16, $end: 32, $step: .0625) using ($i, $m) {
+	@include mixins.utility(lh#{$i}) {
+		line-height: $m;
+	}
+}
+
+@include mixins.utility(tac) {
+	text-align: center;
+}
+
+@include mixins.utility(taj) {
+	text-align: justify;
+}
+
+@include mixins.utility(tar) {
+	text-align: right;
+}
+
+@include mixins.utility(tdu) {
+	text-decoration: underline;
+}

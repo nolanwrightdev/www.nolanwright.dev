@@ -27,5 +27,4 @@ module.exports = {
 		sortClassName: true,
 		useShortDoctype: true,
 	},
-	icons: new Set(['mail', 'message-circle', 'github', 'gitlab']),
 }

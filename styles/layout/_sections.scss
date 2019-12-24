@@ -1,0 +1,65 @@
+@use 'sass:map';
+@use 'styles/abstracts/placeholders';
+@use 'styles/abstracts/variables';
+
+#sections {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	color: map.get(variables.$colors, 'foreground');
+
+	header, footer {
+		@extend %bg-striped-accent;
+	}
+
+	header {
+		flex: 0 1 auto;
+		display: flex;
+		justify-content: center;
+
+		a {
+			height: 2rem;
+			width: 2rem;
+			display: block;
+			padding: .5rem;
+
+			img {
+				height: 100%;
+				width: 100%;
+			}
+		}
+	}
+
+	#container {
+		flex: 0 1 auto;
+		display: flex;
+		justify-content: center;
+		padding: 2rem 5vw;
+
+		> div {
+			flex: 0 1 70ch;
+			min-width: 0;
+		}
+	}
+
+	footer {
+		flex: 1 1 auto;
+		padding: 1rem;
+
+		div {
+			display: flex;
+			justify-content: center;
+			margin: 1rem 0;
+
+			a:not(:last-child) {
+				margin-right: 1rem;
+			}
+		}
+
+		small {
+			display: block;
+			text-align: center;
+			margin: 1rem 0;
+		}
+	}
+}

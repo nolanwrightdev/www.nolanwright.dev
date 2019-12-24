@@ -1,42 +1,31 @@
-extends /layouts/base
+extends /layouts/with-sections
 
 block vars
-	- let title = 'My homepage'
-	- let description = 'My website'
+	- let title = 'Nolan Wright'
+	- let description = 'My personal website and blog'
 
-block body
-	body(class='ffm')
-		header(class='fi bgd cl')
-			nav
-				ul(class='df jcc')
-					-
-						let xs = [
-							['/', 'Home'],
-							['/about/', 'About'],
-							['/blog/', 'Blog']]
-
-					//- dereferencing should be coming soon (merged but not yet released)
-					for x in xs
-						li(class='homenav')
-							a(href=x[0] class='db p12')= x[1]
-		main(class='fa df aic jcc bgd cl')
-			div
-				h1(class='tac fs30 ls20') Nolan Wright
-				div(class='df my16')
-					hr(class='fa cl mya')
-					p(class='fi mx16 fs20 ls20') dev
-					hr(class='fa cl mya')
-				p(class='fs20') My personal website and blog
-		footer(class='f1 cd')
-			div(class='df jcc')
-				-
-					let ys = [
-						['mailto:nolanwright.dev', 'mail'],
-						['xmpp:nwdev@jabber.fr', 'message-circle'],
-						['https://github.com/nolanwrightdev', 'github'],
-						['https://gitlab.com/nolanwrightdev', 'gitlab']]
-
-				for y in ys
-					a(href=y[0] class='homeanchor')
-						svg(class='feather h24 w24 m12 db')
-							!= `<use href="/sprite.svg#${y[1]}">`
+block main
+	main
+		h1.aib.df.fww.jcsb.lh20
+			span.fs30.ls20 Nolan Wright
+			span 〈 dev 〉
+		hr.mb20
+		h2.fs20.fw7.mb12 About me
+		p.lh24.mb20
+			| I am a passionate technologist who deeply enjoys learning and applying
+			| best practices to solve interesting problems. My interests are
+			| wide-ranging and span functional programming to systems programming to
+			| web development and many other specializations within the vast field of
+			| technology. Becoming the best developer and person possible is what
+			| motivates me.
+		h2.fs20.fw7.mb16 Recent articles
+		ul#articles.mb16
+			li
+				a(href='blog/an-example-blog-post')
+					h3 An Example Blog Post
+					p
+						| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+						| eiusmod tempor incididunt
+					time(datetime='2019-12-19') 2019-12-19
+		p.tar
+			a(href='blog') More articles →

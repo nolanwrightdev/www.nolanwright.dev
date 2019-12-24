@@ -1,0 +1,17 @@
+@use 'styles/abstracts/mixins';
+
+@include mixins.utility(bts) {
+	border-top: solid;
+}
+
+@include mixins.utility(bbs) {
+	border-bottom: solid;
+}
+
+@include mixins.utility(bls) {
+	border-left: solid;
+}
+
+@include mixins.utility(brs) {
+	border-right: solid;
+}

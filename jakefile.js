@@ -5,13 +5,11 @@ const childProcess = require('child_process')
 const path = require('path')
 const glob = require('glob')
 const html = require('html-minifier')
-const axios = require('axios')
 const PurgeCSS = require('purgecss')
 const CleanCSS = require('clean-css')
-const xml = require('xmldom')
 const browserSync = require('browser-sync')
 const chokidar = require('chokidar')
-const sass = require('node-sass')
+const sass = require('sass')
 const config = require('./config')
 
 const read = path => fs.readFileSync(path, 'utf8')
@@ -33,7 +31,16 @@ j.task('clean', function() {
 j.desc('Serve build directory.')
 j.task('serve', ['dist'], async function() {
 	await new Promise(resolve => {
-		browserSync({ watch: true, server: 'dist' }, resolve)
+		browserSync(
+			{
+				watch: true,
+				server: {
+					baseDir: 'dist',
+					serveStaticOptions: { extensions: ['html'] },
+				},
+			},
+			resolve,
+		)
 	})
 	await new Promise(resolve => {
 		process.on('SIGINT', () => {
@@ -157,30 +164,12 @@ j.namespace('assets', function() {
 		fs.copyFileSync(src, this.name)
 	})
 
-	j.file('dist/sprite.svg', ['dist'], async function() {
-		const { data } = await axios.get(
-			'https://unpkg.com/feather-icons/dist/feather-sprite.svg',
-		)
-
-		const { icons } = config
-
-		const doc = new xml.DOMParser().parseFromString(data)
-		const defs = doc.documentElement.childNodes['0']
-
-		Object.values(defs.childNodes)
-			.filter(c => c.nodeName === 'symbol')
-			.filter(c => !icons.has(c.getAttribute('id')))
-			.forEach(c => defs.removeChild(c))
-
-		write(this.name)(new xml.XMLSerializer().serializeToString(doc))
-	})
-
-	j.file('dist/pgpkey.asc', ['dist'], function() {
+	j.file('dist/publickey.txt', ['dist'], function() {
 		write(this.name)(
 			childProcess.execSync('gpg2 --armor --export nolan@nolanwright.dev'),
 		)
 	})
 
 	j.desc('Produce all assets.')
-	j.task('all', ['dist/favicon.ico', 'dist/sprite.svg', 'dist/pgpkey.asc'])
+	j.task('all', ['dist/favicon.ico', 'dist/publickey.txt'])
 })

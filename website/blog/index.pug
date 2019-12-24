@@ -1,9 +1,17 @@
 extends /layouts/with-sections
 
 block vars
-	- let title = 'Blog | Nolan Wright'
-	- let description = 'Blog articles I have put together'
+	- let title = 'Articles'
+	- let description = 'An index of articles that I have written for my blog'
 
-block innerMain
-	h1(class='lh20 fs24 mb12') Blog
-	p Sorry, I have not yet published any blog articles. Please check again soon!
+block main
+	main
+		h1.fs24.fw7.mb12 Articles
+		ul#articles
+			li
+				a(href='an-example-blog-post')
+					h2 An Example Blog Post
+					p
+						| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+						| eiusmod tempor incididunt
+					time(datetime='2019-12-19') 2019-12-19

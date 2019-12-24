@@ -1,0 +1,18 @@
+// Use this mixin to define utility classes. We
+// can later develop this mixin to create further
+// classes based on the name, using, for example,
+// optional arguments to control what classes are
+// created.
+@mixin utility($name) {
+	.#{$name} {
+		@content;
+	}
+}
+
+// Use this mixin to create graduated utility
+// classes.
+@mixin graduated($start: 1, $end: 64, $step: 0.0625rem) {
+	@for $i from $start through $end {
+		@content($i, $i * $step);
+	}
+}

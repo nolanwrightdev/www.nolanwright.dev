@@ -1,0 +1,29 @@
+@use 'styles/abstracts/mixins';
+
+@include mixins.utility(hful) {
+	height: 100%;
+}
+
+@include mixins.utility(hscr) {
+	height: 100vh;
+}
+
+@include mixins.utility(wful) {
+	width: 100%;
+}
+
+@include mixins.utility(wscr) {
+	width: 100vw;
+}
+
+@include mixins.graduated using ($i, $m) {
+
+	@include mixins.utility(h#{$i}) {
+		height: $m;
+	}
+
+	@include mixins.utility(w#{$i}) {
+		width: $m;
+	}
+
+}
