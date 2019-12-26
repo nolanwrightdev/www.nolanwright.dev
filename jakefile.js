@@ -159,7 +159,7 @@ j.namespace('css', function() {
 })
 
 j.namespace('assets', function() {
-	j.file('dist/favicon.ico', ['dist', 'website/favicon.ico'], function() {
+	j.file('dist/logo.svg', ['dist', 'website/logo.svg'], function() {
 		const [, src] = this.prereqs
 		fs.copyFileSync(src, this.name)
 	})
@@ -171,5 +171,5 @@ j.namespace('assets', function() {
 	})
 
 	j.desc('Produce all assets.')
-	j.task('all', ['dist/favicon.ico', 'dist/publickey.txt'])
+	j.task('all', ['dist/logo.svg', 'dist/publickey.txt'])
 })
