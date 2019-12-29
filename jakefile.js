@@ -166,7 +166,7 @@ j.namespace('assets', function() {
 
 	j.file('dist/publickey.txt', ['dist'], function() {
 		write(this.name)(
-			childProcess.execSync('gpg2 --armor --export nolan@nolanwright.dev'),
+			childProcess.execSync('git cat-file blob nolanwrightdev-gpg-pub'),
 		)
 	})
 

@@ -1,0 +1,38 @@
+name: deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      BUILD_DIR_PATH: dist
+      DEPLOY_BRANCH: gh-pages
+      DOMAIN: www.nolanwright.dev
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - run: |
+          git fetch origin refs/tags/*:refs/tags/*
+          npm install
+          npx jake html:build
+          npx jake css:build
+          npx jake css:purge
+          npx jake css:minify
+          npx jake html:minify
+          npx jake assets:all
+          git checkout --orphan $DEPLOY_BRANCH
+          echo $DOMAIN > $BUILD_DIR_PATH/CNAME
+          echo "At: $(date -u)" > $BUILD_DIR_PATH/build.txt
+          echo "Commit SHA: $GITHUB_SHA" >> $BUILD_DIR_PATH/build.txt
+          git config --local user.email "action@github.com"
+          git config --local user.name "Github Action"
+          git config --local core.worktree $(pwd)/$BUILD_DIR_PATH
+          git add -A
+          git commit -m "Auto-deploy $GITHUB_SHA"
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ env.DEPLOY_BRANCH }}
+          force: true
